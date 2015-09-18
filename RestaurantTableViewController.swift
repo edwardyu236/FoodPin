@@ -80,7 +80,7 @@ class RestaurantTableViewController: UITableViewController {
         // Add I've been here action to the menu
         let isVisitedTitle = restaurantIsVisited[indexPath.row] ? "I haven't been to here before" : "I've been here"
         let isVisitedAction = UIAlertAction(title: isVisitedTitle, style: .Default, handler: {
-            (action:UIAlertAction!) -> Void in
+            (action:UIAlertAction) -> Void in
             
             let cell = tableView.cellForRowAtIndexPath(indexPath) as! CustomTableViewCell
             
@@ -112,9 +112,9 @@ class RestaurantTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject] {
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction] {
         
-        var shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Share", handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+        let shareAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Share", handler: { (action:UITableViewRowAction, indexPath:NSIndexPath) -> Void in
 
             let shareMenu = UIAlertController(title: nil, message: "Share using", preferredStyle: .ActionSheet)
             let twitterAction = UIAlertAction(title: "Twitter", style: UIAlertActionStyle.Default, handler: nil)
@@ -131,7 +131,7 @@ class RestaurantTableViewController: UITableViewController {
             }
         )
         
-        var deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete",handler: { (action:UITableViewRowAction!, indexPath:NSIndexPath!) -> Void in
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete",handler: { (action:UITableViewRowAction, indexPath:NSIndexPath) -> Void in
 
             // Delete the row from the data source
             self.restaurantNames.removeAtIndex(indexPath.row)
